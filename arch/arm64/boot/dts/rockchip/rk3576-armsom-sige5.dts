@@ -861,7 +861,7 @@
 	status = "okay";
 };
 
-&i2c5 {
+/*&i2c5 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c5m3_xfer>;
@@ -1002,4 +1002,4 @@
 			remote-endpoint = <&mipi_lvds1_sditf>;
 		};
 	};
-};
+}; */
