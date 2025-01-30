@@ -1018,12 +1018,10 @@ static int ov13b10_enum_mbus_code(struct v4l2_subdev *sd,
 }
 
 static int ov13b10_enum_frame_sizes(struct v4l2_subdev *sd,
-				    struct v4l2_subdev_pad_config *cfg,
+				    struct v4l2_subdev_state *sd_state,
 				   struct v4l2_subdev_frame_size_enum *fse)
 {
-	struct ov13b10 *ov13b10 = to_ov13b10(sd);
-
-	if (fse->index >= ov13b10->cfg_num)
+	if (fse->index >= ARRAY_SIZE(supported_modes))
 		return -EINVAL;
 
 	if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
