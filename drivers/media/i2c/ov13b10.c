@@ -971,7 +971,7 @@ static int ov13b10_set_fmt(struct v4l2_subdev *sd,
 					 h_blank, 1, h_blank);
 		vblank_def = mode->vts_def - mode->height;
 		__v4l2_ctrl_modify_range(ov13b10->vblank, vblank_def,
-					 ov13b10_VTS_MAX - mode->height,
+					 OV13B10_VTS_MAX - mode->height,
 					 1, vblank_def);
 	}
 
@@ -1997,7 +1997,7 @@ continue_probe:
 	snprintf(sd->name, sizeof(sd->name), "m%02d_%s_%s %s",
 		 ov13b10->module_index, facing,
 		 OV13B10_NAME, dev_name(sd->dev));
-	ret = v4l2_async_register_subdev_sensor_common(sd);
+	ret = v4l2_async_register_subdev_sensor(sd);
 	if (ret) {
 		dev_err(dev, "v4l2 async register subdev failed\n");
 		goto err_clean_entity;
