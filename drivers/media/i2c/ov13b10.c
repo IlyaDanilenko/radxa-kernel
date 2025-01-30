@@ -990,7 +990,7 @@ static int __ov13b10_power_on(struct ov13b10 *ov13b10)
 	u32 delay_us;
 	struct device *dev = &ov13b10->client->dev;
 
-	if (!IS_ERR(dev_info(dev, "Detected OV%06x sensor, REVISION 0x%x\n", CHIP_ID, id);->power_gpio))
+	if (!IS_ERR(ov13b10->power_gpio))
 		gpiod_set_value_cansleep(ov13b10->power_gpio, 1);
 
 	usleep_range(1000, 2000);
