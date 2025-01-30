@@ -923,15 +923,15 @@ static int ov13b10_get_reso_dist(const struct ov13b10_mode *mode,
 }
 
 static const struct ov13b10_mode *
-ov13b10_find_best_fit(struct ov13b10 *ov13b10, struct v4l2_subdev_format *fmt)
+ov13b10_find_best_fit(struct v4l2_subdev_format *fmt)
 {
 	struct v4l2_mbus_framefmt *framefmt = &fmt->format;
-	int dist = 0;
+	int dist;
 	int cur_best_fit = 0;
 	int cur_best_fit_dist = -1;
-	unsigned int i = 0;
+	unsigned int i;
 
-	for (i = 0; i < ov13b10->cfg_num; i++) {
+	for (i = 0; i < ARRAY_SIZE(supported_modes); i++) {
 		dist = ov13b10_get_reso_dist(&supported_modes[i], framefmt);
 		if (cur_best_fit_dist == -1 || dist < cur_best_fit_dist) {
 			cur_best_fit_dist = dist;
