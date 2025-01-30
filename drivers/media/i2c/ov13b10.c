@@ -1527,19 +1527,16 @@ static int ov13b10_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 #endif
 
 static int ov13b10_enum_frame_interval(struct v4l2_subdev *sd,
-				       struct v4l2_subdev_pad_config *cfg,
+				       struct v4l2_subdev_state *sd_state,
 				       struct v4l2_subdev_frame_interval_enum *fie)
 {
-	struct ov13b10 *ov13b10 = to_ov13b10(sd);
-
-	if (fie->index >= ov13b10->cfg_num)
+	if (fie->index >= ARRAY_SIZE(supported_modes))
 		return -EINVAL;
 
 	fie->code = MEDIA_BUS_FMT_SBGGR10_1X10;
 	fie->width = supported_modes[fie->index].width;
 	fie->height = supported_modes[fie->index].height;
 	fie->interval = supported_modes[fie->index].max_fps;
-	fie->reserved[0] = supported_modes[fie->index].hdr_mode;
 	return 0;
 }
 
@@ -1557,28 +1554,6 @@ static int ov13b10_enum_frame_interval(struct v4l2_subdev *sd,
  * otherwise it will crop out strange resolution according
  * to the alignment rules.
  */
-static int ov13b10_get_selection(struct v4l2_subdev *sd,
-				struct v4l2_subdev_pad_config *cfg,
-				struct v4l2_subdev_selection *sel)
-{
-	struct ov13b10 *ov13b10 = to_ov13b10(sd);
-
-	if (sel->target == V4L2_SEL_TGT_CROP_BOUNDS) {
-		if (ov13b10->cur_width == 4208) {
-			sel->r.left = CROP_START(ov13b10->cur_mode->width, 4208);
-			sel->r.width = 4208;
-			sel->r.top = CROP_START(ov13b10->cur_mode->height, 3120);
-			sel->r.height = 3120;
-		} else {
-			sel->r.left = CROP_START(ov13b10->cur_mode->width, DST_WIDTH);
-			sel->r.width = DST_WIDTH;
-			sel->r.top = CROP_START(ov13b10->cur_mode->height, DST_HEIGHT);
-			sel->r.height = DST_HEIGHT;
-		}
-		return 0;
-	}
-	return -EINVAL;
-}
 
 static const struct dev_pm_ops ov13b10_pm_ops = {
 	SET_RUNTIME_PM_OPS(ov13b10_runtime_suspend,
