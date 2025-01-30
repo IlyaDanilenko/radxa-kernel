@@ -113,13 +113,13 @@ static const char * const ov13b10_supply_names[] = {
 
 #define OV13B10_NUM_SUPPLIES ARRAY_SIZE(ov13b10_supply_names)
 
-enum ov13b10_max_pad {
-	PAD0, /* link to isp */
-	PAD1, /* link to csi wr0 | hdr x2:L x3:M */
-	PAD2, /* link to csi wr1 | hdr      x3:L */
-	PAD3, /* link to csi wr2 | hdr x2:M x3:S */
-	PAD_MAX,
-};
+// enum ov13b10_max_pad {
+// 	PAD0, /* link to isp */
+// 	PAD1, /* link to csi wr0 | hdr x2:L x3:M */
+// 	PAD2, /* link to csi wr1 | hdr      x3:L */
+// 	PAD3, /* link to csi wr2 | hdr x2:M x3:S */
+// 	PAD_MAX,
+// };
 
 struct regval {
 	u16 addr;
@@ -585,9 +585,184 @@ static const struct regval ov13b10_4208x3120_regs[] = {
 	{REG_NULL, 0x00},
 };
 
+static const struct regval ov13b10_4160x3120_regs[] = {
+	{0x0305, 0xaf},
+	{0x3501, 0x0c},
+	{0x3662, 0x92},
+	{0x3714, 0x24},
+	{0x3739, 0x12},
+	{0x37c2, 0x04},
+	{0x37d9, 0x0c},
+	{0x37e2, 0x0a},
+	{0x3800, 0x00},
+	{0x3801, 0x00},
+	{0x3802, 0x00},
+	{0x3803, 0x08},
+	{0x3804, 0x10},
+	{0x3805, 0x8f},
+	{0x3806, 0x0c},
+	{0x3807, 0x47},
+	{0x3808, 0x10},
+	{0x3809, 0x40},
+	{0x380a, 0x0c},
+	{0x380b, 0x30},
+	{0x380c, 0x04},
+	{0x380d, 0x98},
+	{0x380e, 0x0c},
+	{0x380f, 0x7c},
+	{0x3810, 0x00},
+	{0x3811, 0x27},
+	{0x3812, 0x00},
+	{0x3813, 0x09},
+	{0x3814, 0x01},
+	{0x3816, 0x01},
+	{0x3820, 0x88},
+	{0x3c8c, 0x19},
+	{0x4008, 0x02},
+	{0x4009, 0x0f},
+	{0x4050, 0x02},
+	{0x4051, 0x09},
+	{0x4501, 0x00},
+	{0x4505, 0x00},
+	{0x4837, 0x0e},
+	{0x5000, 0xff},
+	{0x5001, 0x0f},
+};
+
+static const struct regval ov13b10_4160x2340_regs[] = {
+	{0x0305, 0xaf},
+	{0x3501, 0x0c},
+	{0x3662, 0x92},
+	{0x3714, 0x24},
+	{0x3739, 0x12},
+	{0x37c2, 0x04},
+	{0x37d9, 0x0c},
+	{0x37e2, 0x0a},
+	{0x3800, 0x00},
+	{0x3801, 0x00},
+	{0x3802, 0x00},
+	{0x3803, 0x08},
+	{0x3804, 0x10},
+	{0x3805, 0x8f},
+	{0x3806, 0x0c},
+	{0x3807, 0x47},
+	{0x3808, 0x10},
+	{0x3809, 0x40},
+	{0x380a, 0x09},
+	{0x380b, 0x24},
+	{0x380c, 0x04},
+	{0x380d, 0x98},
+	{0x380e, 0x0c},
+	{0x380f, 0x7c},
+	{0x3810, 0x00},
+	{0x3811, 0x27},
+	{0x3812, 0x01},
+	{0x3813, 0x8f},
+	{0x3814, 0x01},
+	{0x3816, 0x01},
+	{0x3820, 0x88},
+	{0x3c8c, 0x19},
+	{0x4008, 0x02},
+	{0x4009, 0x0f},
+	{0x4050, 0x02},
+	{0x4051, 0x09},
+	{0x4501, 0x00},
+	{0x4505, 0x00},
+	{0x4837, 0x0e},
+	{0x5000, 0xff},
+	{0x5001, 0x0f},
+};
+
+static const struct regval ov13b10_2104x1560_regs[] = {
+	{0x0305, 0xaf},
+	{0x3501, 0x06},
+	{0x3662, 0x88},
+	{0x3714, 0x28},
+	{0x3739, 0x10},
+	{0x37c2, 0x14},
+	{0x37d9, 0x06},
+	{0x37e2, 0x0c},
+	{0x3800, 0x00},
+	{0x3801, 0x00},
+	{0x3802, 0x00},
+	{0x3803, 0x08},
+	{0x3804, 0x10},
+	{0x3805, 0x8f},
+	{0x3806, 0x0c},
+	{0x3807, 0x47},
+	{0x3808, 0x08},
+	{0x3809, 0x38},
+	{0x380a, 0x06},
+	{0x380b, 0x18},
+	{0x380c, 0x04},
+	{0x380d, 0x98},
+	{0x380e, 0x06},
+	{0x380f, 0x3e},
+	{0x3810, 0x00},
+	{0x3811, 0x07},
+	{0x3812, 0x00},
+	{0x3813, 0x05},
+	{0x3814, 0x03},
+	{0x3816, 0x03},
+	{0x3820, 0x8b},
+	{0x3c8c, 0x18},
+	{0x4008, 0x00},
+	{0x4009, 0x05},
+	{0x4050, 0x00},
+	{0x4051, 0x05},
+	{0x4501, 0x08},
+	{0x4505, 0x00},
+	{0x4837, 0x0e},
+	{0x5000, 0xfd},
+	{0x5001, 0x0d},
+};
+
+static const struct regval ov13b10_2080x1170_regs[] = {
+	{0x0305, 0xaf},
+	{0x3501, 0x06},
+	{0x3662, 0x88},
+	{0x3714, 0x28},
+	{0x3739, 0x10},
+	{0x37c2, 0x14},
+	{0x37d9, 0x06},
+	{0x37e2, 0x0c},
+	{0x3800, 0x00},
+	{0x3801, 0x00},
+	{0x3802, 0x00},
+	{0x3803, 0x08},
+	{0x3804, 0x10},
+	{0x3805, 0x8f},
+	{0x3806, 0x0c},
+	{0x3807, 0x47},
+	{0x3808, 0x08},
+	{0x3809, 0x20},
+	{0x380a, 0x04},
+	{0x380b, 0x92},
+	{0x380c, 0x04},
+	{0x380d, 0x98},
+	{0x380e, 0x06},
+	{0x380f, 0x3e},
+	{0x3810, 0x00},
+	{0x3811, 0x13},
+	{0x3812, 0x00},
+	{0x3813, 0xc9},
+	{0x3814, 0x03},
+	{0x3816, 0x03},
+	{0x3820, 0x8b},
+	{0x3c8c, 0x18},
+	{0x4008, 0x00},
+	{0x4009, 0x05},
+	{0x4050, 0x00},
+	{0x4051, 0x05},
+	{0x4501, 0x08},
+	{0x4505, 0x00},
+	{0x4837, 0x0e},
+	{0x5000, 0xfd},
+	{0x5001, 0x0d},
+};
 
 static const struct ov13b10_mode supported_modes[] = {
-{
+	{
 		.width = 4208,
 		.height = 3120,
 		.max_fps = {
@@ -598,8 +773,54 @@ static const struct ov13b10_mode supported_modes[] = {
 		.hts_def = 0x0498 * 4,
 		.vts_def = 0x0c7c,
 		.reg_list = ov13b10_4208x3120_regs,
-		.hdr_mode = NO_HDR,
-		.vc[PAD0] = V4L2_MBUS_CSI2_CHANNEL_0,
+	},
+	{
+		.width = 4160,
+		.height = 3120,
+		.max_fps = {
+			.numerator = 10000,
+			.denominator = 300000,
+		},
+		.exp_def = 0x0200,
+		.hts_def = 0x0498 * 4,
+		.vts_def = 0x0c7c,
+		.reg_list = ov13b10_4160x3120_regs,
+	},
+	{
+		.width = 4160,
+		.height = 2340,
+		.max_fps = {
+			.numerator = 10000,
+			.denominator = 300000,
+		},
+		.exp_def = 0x0200,
+		.hts_def = 0x0498 * 4,
+		.vts_def = 0x0c7c,
+		.reg_list = ov13b10_4160x2340_regs,
+	},
+	{
+		.width = 2104,
+		.height = 1560,
+		.max_fps = {
+			.numerator = 10000,
+			.denominator = 300000,
+		},
+		.exp_def = 0x0200,
+		.hts_def = 0x0498 * 4,
+		.vts_def = 0x063e,
+		.reg_list = ov13b10_2104x1560_regs,
+	},
+	{
+		.width = 2080,
+		.height = 1170,
+		.max_fps = {
+			.numerator = 10000,
+			.denominator = 300000,
+		},
+		.exp_def = 0x0200,
+		.hts_def = 0x0498 * 4,
+		.vts_def = 0x063e,
+		.reg_list = ov13b10_2080x1170_regs,
 	},
 };
 
@@ -722,23 +943,23 @@ ov13b10_find_best_fit(struct ov13b10 *ov13b10, struct v4l2_subdev_format *fmt)
 }
 
 static int ov13b10_set_fmt(struct v4l2_subdev *sd,
-			   struct v4l2_subdev_pad_config *cfg,
+			   struct v4l2_subdev_state *sd_state,
 			  struct v4l2_subdev_format *fmt)
 {
 	struct ov13b10 *ov13b10 = to_ov13b10(sd);
 	const struct ov13b10_mode *mode;
-	s64 h_blank, vblank_def = 0;
+	s64 h_blank, vblank_def;
 
 	mutex_lock(&ov13b10->mutex);
 
-	mode = ov13b10_find_best_fit(ov13b10, fmt);
+	mode = ov13b10_find_best_fit(fmt);
 	fmt->format.code = MEDIA_BUS_FMT_SBGGR10_1X10;
 	fmt->format.width = mode->width;
 	fmt->format.height = mode->height;
 	fmt->format.field = V4L2_FIELD_NONE;
 	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
 #ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
-		*v4l2_subdev_get_try_format(sd, cfg, fmt->pad) = fmt->format;
+		*v4l2_subdev_get_try_format(sd, sd_state, fmt->pad) = fmt->format;
 #else
 		mutex_unlock(&ov13b10->mutex);
 		return -ENOTTY;
@@ -750,7 +971,7 @@ static int ov13b10_set_fmt(struct v4l2_subdev *sd,
 					 h_blank, 1, h_blank);
 		vblank_def = mode->vts_def - mode->height;
 		__v4l2_ctrl_modify_range(ov13b10->vblank, vblank_def,
-					 OV13B10_VTS_MAX - mode->height,
+					 ov13b10_VTS_MAX - mode->height,
 					 1, vblank_def);
 	}
 
@@ -760,7 +981,7 @@ static int ov13b10_set_fmt(struct v4l2_subdev *sd,
 }
 
 static int ov13b10_get_fmt(struct v4l2_subdev *sd,
-			   struct v4l2_subdev_pad_config *cfg,
+			   struct v4l2_subdev_state *sd_state,
 			   struct v4l2_subdev_format *fmt)
 {
 	struct ov13b10 *ov13b10 = to_ov13b10(sd);
@@ -769,7 +990,7 @@ static int ov13b10_get_fmt(struct v4l2_subdev *sd,
 	mutex_lock(&ov13b10->mutex);
 	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
 #ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
-		fmt->format = *v4l2_subdev_get_try_format(sd, cfg, fmt->pad);
+		fmt->format = *v4l2_subdev_get_try_format(sd, sd_state, fmt->pad);
 #else
 		mutex_unlock(&ov13b10->mutex);
 		return -ENOTTY;
@@ -886,25 +1107,11 @@ static void ov13b10_get_otp(struct otp_info *otp,
 	}
 }
 
-static int ov13b10_g_mbus_config(struct v4l2_subdev *sd,
+static int ov13b10_g_mbus_config(struct v4l2_subdev *sd, unsigned int pad_id,
 				struct v4l2_mbus_config *config)
 {
-	struct ov13b10 *ov13b10 = to_ov13b10(sd);
-	const struct ov13b10_mode *mode = ov13b10->cur_mode;
-	u32 val = 0;
-
-	if (mode->hdr_mode == NO_HDR)
-		val = 1 << (OV13B10_LANES - 1) |
-		V4L2_MBUS_CSI2_CHANNEL_0 |
-		V4L2_MBUS_CSI2_CONTINUOUS_CLOCK;
-	if (mode->hdr_mode == HDR_X2)
-		val = 1 << (OV13B10_LANES - 1) |
-		V4L2_MBUS_CSI2_CHANNEL_0 |
-		V4L2_MBUS_CSI2_CONTINUOUS_CLOCK |
-		V4L2_MBUS_CSI2_CHANNEL_1;
-
-	config->type = V4L2_MBUS_CSI2;
-	config->flags = val;
+	config->type = V4L2_MBUS_CSI2_DPHY;
+	config->bus.mipi_csi2.num_data_lanes = OV13B10_LANES;
 
 	return 0;
 }
@@ -1304,7 +1511,8 @@ static int ov13b10_runtime_suspend(struct device *dev)
 static int ov13b10_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
 {
 	struct ov13b10 *ov13b10 = to_ov13b10(sd);
-	struct v4l2_mbus_framefmt *try_fmt = v4l2_subdev_get_try_format(sd, fh->pad, 0);
+	struct v4l2_mbus_framefmt *try_fmt =
+				v4l2_subdev_get_try_format(sd, fh->state, 0);
 	const struct ov13b10_mode *def_mode = &supported_modes[0];
 
 	mutex_lock(&ov13b10->mutex);
@@ -1397,7 +1605,6 @@ static const struct v4l2_subdev_core_ops ov13b10_core_ops = {
 static const struct v4l2_subdev_video_ops ov13b10_video_ops = {
 	.s_stream = ov13b10_s_stream,
 	.g_frame_interval = ov13b10_g_frame_interval,
-	.g_mbus_config = ov13b10_g_mbus_config,
 };
 
 static const struct v4l2_subdev_pad_ops ov13b10_pad_ops = {
@@ -1406,7 +1613,7 @@ static const struct v4l2_subdev_pad_ops ov13b10_pad_ops = {
 	.enum_frame_interval = ov13b10_enum_frame_interval,
 	.get_fmt = ov13b10_get_fmt,
 	.set_fmt = ov13b10_set_fmt,
-	.get_selection = ov13b10_get_selection, // Xin add
+	.get_mbus_config = ov13b10_g_mbus_config,
 };
 
 static const struct v4l2_subdev_ops ov13b10_subdev_ops = {
