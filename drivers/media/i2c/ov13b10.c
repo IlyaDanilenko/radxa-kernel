@@ -1995,7 +1995,7 @@ err_destroy_mutex:
 	return ret;
 }
 
-static int ov13b10_remove(struct i2c_client *client)
+static void ov13b10_remove(struct i2c_client *client)
 {
 	struct v4l2_subdev *sd = i2c_get_clientdata(client);
 	struct ov13b10 *ov13b10 = to_ov13b10(sd);
@@ -2011,8 +2011,6 @@ static int ov13b10_remove(struct i2c_client *client)
 	if (!pm_runtime_status_suspended(&client->dev))
 		__ov13b10_power_off(ov13b10);
 	pm_runtime_set_suspended(&client->dev);
-
-	return 0;
 }
 
 #if IS_ENABLED(CONFIG_OF)
