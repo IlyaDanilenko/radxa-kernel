@@ -865,7 +865,7 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c4m3_xfer>;
-	ov13b10_1: ov13b10_1@10 {
+	ov13b10: ov13b10@100 {
 		status = "okay";
 		compatible = "ovti,ov13b10";
 		reg = <0x10>;
